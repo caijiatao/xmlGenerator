@@ -70,4 +70,8 @@ public abstract class XmlNode implements BeVisitor {
     public void setTagName(String tagName) {
         this.tagName = tagName;
     }
+
+    public ParentNode getParentNode() {
+        return parentNode;
+    }
 }

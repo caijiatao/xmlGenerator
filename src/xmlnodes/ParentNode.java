@@ -16,12 +16,29 @@ public class ParentNode extends XmlNode {
         super(parentNode,tagName);
     }
 
-    public void addChild(BeVisitor child){
+    public void addChild(XmlNode child){
+        if(child == this){
+            System.out.println("循环添加");
+            return;
+        }
+        XmlNode parent = getParentNode();
+        while(parent != null){
+            if(parent == child){
+                System.out.println("循环添加");
+                return;
+            }
+            parent = parent.getParentNode();
+        }
         childrenList.add(child);
     }
 
     public void removeChild(BeVisitor child){
-        childrenList.remove(child);
+        if(childrenList.contains(child)){
+            childrenList.remove(child);
+        }
+        else{
+            System.out.println("您要删除的元素不存在");
+        }
     }
 
     @Override
